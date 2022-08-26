@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector3(rb.velocity.x, 0, 0);
             rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -1 * Physics.gravity.y), ForceMode.VelocityChange);
+            animator.SetBool("isJumping", true);
         }
 
         if (Input.GetButtonDown("Fire1"))
@@ -88,10 +89,29 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector3(h * playerSpeed, rb.velocity.y, 0); //Movement
         animator.SetFloat("speed", (FacingSign * rb.velocity.x) / playerSpeed);
 
+        if(isGrounded && ((FacingSign * rb.velocity.x) / playerSpeed) != 0)
+        {
+            animator.SetBool("isMoving", true);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
+
         rb.MoveRotation(Quaternion.Euler(new Vector3(0, 90 * Mathf.Sign(target.position.x - transform.position.x), 0))); //Face where you aim
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundMask, QueryTriggerInteraction.Ignore);//Check if grounded
         animator.SetBool("isGrounded", isGrounded);
+        animator.SetBool("isJumping", false);
+        if(rb.velocity.y < -10f)
+        {
+            Debug.Log("Falling");
+            animator.SetBool("isFalling", true);
+        }
+        else
+        {
+            animator.SetBool("isFalling", false);
+        }
     }
 
     private void OnAnimatorIK()
@@ -102,7 +122,6 @@ public class PlayerController : MonoBehaviour
         animator.SetLookAtWeight(1);
         animator.SetLookAtPosition(target.position);
     }
-
     private void Fire()
     {
         recoilTimer = Time.time;
