@@ -67,6 +67,9 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
         animator.SetIKPosition(AvatarIKGoal.RightHand, target.position);
+
+        animator.SetLookAtWeight(1);
+        animator.SetLookAtPosition(target.position);
     }
 
     private void GetReferences()
