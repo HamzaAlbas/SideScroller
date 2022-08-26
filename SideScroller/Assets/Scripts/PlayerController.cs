@@ -63,6 +63,12 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isGrounded", isGrounded);
     }
 
+    private void OnAnimatorIK()
+    {
+        animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
+        animator.SetIKPosition(AvatarIKGoal.RightHand, target.position);
+    }
+
     private void GetReferences()
     {
         animator = GetComponent<Animator>();
