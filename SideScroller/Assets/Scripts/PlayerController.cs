@@ -13,10 +13,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private GameObject bulletPrefab, bulletSpawnPosition;
 
+    [SerializeField] private AnimationCurve recoilCurve;
+    [SerializeField] private float recoilDuration = 0.25f;
+    [SerializeField] private float recoilMaxRotation = 45f;
+    [SerializeField] private Transform rightForeArm, rightHand;
+
+
     private Rigidbody rb;
     private Animator animator;
     private bool isGrounded;
     private float h;
+    private float recoilTimer;
     private Camera mainCamera;
     
     private int FacingSign
@@ -58,6 +65,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        if(recoilTimer < 0)
+        {
+            return;
+        }
+
+        float curveTime = (Time.time - recoilTimer) / recoilDuration;
+        if (curveTime > 1f)
+        {
+            recoilTimer = -1;
+        }
+        else
+        {
+            rightForeArm.Rotate(Vector3.forward, recoilCurve.Evaluate(curveTime) * recoilMaxRotation, Space.Self);
+        }
+    }
+
     private void FixedUpdate()
     {
         rb.velocity = new Vector3(h * playerSpeed, rb.velocity.y, 0); //Movement
@@ -80,6 +105,8 @@ public class PlayerController : MonoBehaviour
 
     private void Fire()
     {
+        recoilTimer = Time.time;
+
         var go = Instantiate(bulletPrefab);
         go.transform.position = bulletSpawnPosition.transform.position;
         var bullet = go.GetComponent<BulletController>();

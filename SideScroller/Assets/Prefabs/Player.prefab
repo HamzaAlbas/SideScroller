@@ -200,6 +200,26 @@ MonoBehaviour:
   playerSpeed: 2.5
   jumpHeight: 5
   groundCheck: {fileID: 1606024818}
+  target: {fileID: 0}
+  groundCheckRadius: 0.2
+  mouseAimMask:
+    serializedVersion: 2
+    m_Bits: 64
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 128
+  bulletPrefab: {fileID: 176636186428931230, guid: 62c0bf35e533cc142b0e9e9f0a6e10a5, type: 3}
+  bulletSpawnPosition: {fileID: 8697432679034047455}
+  recoilCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  recoilDuration: 0.25
+  recoilMaxRotation: 45
+  rightForeArm: {fileID: 2853269308315993422}
+  rightHand: {fileID: 2143198244169617198}
 --- !u!54 &8993862005088175784
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -214,7 +234,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 120
   m_CollisionDetection: 0
 --- !u!136 &944364553831528177
 CapsuleCollider:
@@ -2501,10 +2521,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pistol
       objectReference: {fileID: 0}
+    - target: {fileID: 5324634630806421568, guid: 726cd21416e138640a4f2575ffe04009, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5324634630806421568, guid: 726cd21416e138640a4f2575ffe04009, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.668
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 726cd21416e138640a4f2575ffe04009, type: 3}
 --- !u!4 &2574794769693978707 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3699612562426939897, guid: 726cd21416e138640a4f2575ffe04009, type: 3}
+  m_PrefabInstance: {fileID: 1219393810147277226}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8697432679034047455 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7520823109504578165, guid: 726cd21416e138640a4f2575ffe04009, type: 3}
   m_PrefabInstance: {fileID: 1219393810147277226}
   m_PrefabAsset: {fileID: 0}
