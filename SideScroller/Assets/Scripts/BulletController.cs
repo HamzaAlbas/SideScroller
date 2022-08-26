@@ -7,6 +7,8 @@ public class BulletController : MonoBehaviour
 {
     #region VARIABLES
 
+    public static BulletController Instance { get; set; }
+
     [SerializeField] private float bulletVelocity = 20f;
     [SerializeField] private float bulletLifeTime = 1f;
 
@@ -14,6 +16,11 @@ public class BulletController : MonoBehaviour
     private float lifeTimer;
 
     #endregion VARIABLES
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Update()
     {
@@ -46,7 +53,7 @@ public class BulletController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Fire(Vector3 position, Vector3 rotation, int layer)
+    public  void Fire(Vector3 position, Vector3 rotation, int layer)
     {
         lifeTimer = Time.time;
         transform.position = position;

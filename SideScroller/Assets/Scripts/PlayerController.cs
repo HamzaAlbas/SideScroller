@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float groundCheckRadius = 0.2f;
     [SerializeField] private LayerMask mouseAimMask;
     [SerializeField] private LayerMask groundMask;
+    [SerializeField] private GameObject bulletPrefab, bulletSpawnPosition;
 
     private Rigidbody rb;
     private Animator animator;
@@ -50,6 +51,11 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, 0, 0);
             rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -1 * Physics.gravity.y), ForceMode.VelocityChange);
         }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Fire();
+        }
     }
 
     private void FixedUpdate()
@@ -72,6 +78,13 @@ public class PlayerController : MonoBehaviour
         animator.SetLookAtPosition(target.position);
     }
 
+    private void Fire()
+    {
+        var go = Instantiate(bulletPrefab);
+        go.transform.position = bulletSpawnPosition.transform.position;
+        var bullet = go.GetComponent<BulletController>();
+        BulletController.Instance.Fire(go.transform.position, bulletSpawnPosition.transform.eulerAngles, gameObject.layer);
+    }
     private void GetReferences()
     {
         animator = GetComponent<Animator>();

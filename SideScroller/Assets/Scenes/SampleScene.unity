@@ -534,12 +534,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 80237072}
     - target: {fileID: 1306432374252132115, guid: 359ebbfe789922647a9abf6d7667c174, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 176636186428931230, guid: 62c0bf35e533cc142b0e9e9f0a6e10a5, type: 3}
+    - target: {fileID: 1306432374252132115, guid: 359ebbfe789922647a9abf6d7667c174, type: 3}
       propertyPath: groundMask.m_Bits
       value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 1306432374252132115, guid: 359ebbfe789922647a9abf6d7667c174, type: 3}
+      propertyPath: bulletSpawnPosition
+      value: 
+      objectReference: {fileID: 1219393811376963422}
+    - target: {fileID: 1306432374252132115, guid: 359ebbfe789922647a9abf6d7667c174, type: 3}
       propertyPath: mouseAimMask.m_Bits
       value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415605035645188586, guid: 359ebbfe789922647a9abf6d7667c174, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415605035645188586, guid: 359ebbfe789922647a9abf6d7667c174, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.668
+      objectReference: {fileID: 0}
+    - target: {fileID: 6415605035645188586, guid: 359ebbfe789922647a9abf6d7667c174, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8993862005088175784, guid: 359ebbfe789922647a9abf6d7667c174, type: 3}
       propertyPath: m_Constraints
@@ -547,3 +567,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 359ebbfe789922647a9abf6d7667c174, type: 3}
+--- !u!1 &1219393811376963422 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8697432679034047455, guid: 359ebbfe789922647a9abf6d7667c174, type: 3}
+  m_PrefabInstance: {fileID: 1219393811376963421}
+  m_PrefabAsset: {fileID: 0}
