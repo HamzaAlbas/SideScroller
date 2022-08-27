@@ -226,7 +226,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 32fbffff
+      m_ExpandedIDs: 32fbffffd6590000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -503,9 +503,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -1.5009968, y: 2.0305378, z: -6.073466}
+    m_Target: {x: -0.9126197, y: 0.21787459, z: 3.616848}
     speed: 2
-    m_Value: {x: -1.5009968, y: 2.0305378, z: -6.073466}
+    m_Value: {x: -0.9126197, y: 0.21787459, z: 3.616848}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -552,13 +552,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.014691281, y: 0.0014652576, z: 0.000028742375, w: -0.9999093}
+    m_Target: {x: 0.1641786, y: -0.032574814, z: 0.0054296777, w: 0.9858798}
     speed: 2
-    m_Value: {x: 0.014691013, y: 0.0014652308, z: 0.000028741852, w: -0.99989104}
+    m_Value: {x: 0.16417827, y: -0.032574747, z: 0.0054296665, w: 0.98587775}
   m_Size:
-    m_Target: 1.522538
+    m_Target: 4.632954
     speed: 2
-    m_Value: 1.522538
+    m_Value: 4.632954
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -614,32 +614,15 @@ MonoBehaviour:
   m_ViewTransforms:
     m_KeySerializationHelper:
     - {fileID: -1987272046982861090, guid: cf9d2172569855b4c9899094f108143a, type: 2}
-    - {fileID: -1340897741306184530, guid: cf9d2172569855b4c9899094f108143a, type: 2}
     m_ValueSerializationHelper:
-    - e00: 0.7248302
+    - e00: 0.8723697
       e01: 0
       e02: 0
-      e03: -55.016895
+      e03: -52.34207
       e10: 0
-      e11: 0.7248302
+      e11: 0.8723697
       e12: 0
-      e13: 7.4200096
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    - e00: 1
-      e01: 0
-      e02: 0
-      e03: -54
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 233.5
+      e13: 91.38449
       e20: 0
       e21: 0
       e22: 1
@@ -674,7 +657,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -683,14 +666,14 @@ MonoBehaviour:
     y: 557
     width: 1466
     height: 382
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 12}
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+  m_ActualView: {fileID: 11}
   m_Panes:
   - {fileID: 11}
   - {fileID: 12}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -732,22 +715,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Art/Sprites
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
-  m_StartGridSize: 16
+  m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
-  m_LastFoldersGridSize: 16
+  - Assets/Art/Sprites
+  m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\hamza\Documents\GitHub\SideScroller\SideScroller
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 125d0000
-    m_LastClickedID: 23826
-    m_ExpandedIDs: 00000000de5c00000a5d000000ca9a3b
+    m_SelectedIDs: f8930000
+    m_LastClickedID: 37880
+    m_ExpandedIDs: 00000000fa5c0000025d000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -775,7 +758,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000de5c0000
+    m_ExpandedIDs: 00000000fa5c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -828,7 +811,7 @@ MonoBehaviour:
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
     m_ScrollPosition: {x: 0, y: 0}
-    m_GridSize: 16
+    m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207
 --- !u!114 &12
@@ -878,8 +861,8 @@ MonoBehaviour:
     y: 0
     width: 454
     height: 939
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}

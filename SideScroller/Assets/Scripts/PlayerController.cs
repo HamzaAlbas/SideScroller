@@ -142,5 +142,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         mainCamera = Camera.main;
+
+        Cursor.visible = false;
     }
 }
