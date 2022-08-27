@@ -102,13 +102,19 @@ public class PlayerController : MonoBehaviour
 
         isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundMask, QueryTriggerInteraction.Ignore);//Check if grounded
         animator.SetBool("isGrounded", isGrounded);
-        animator.SetBool("isJumping", false);
-        if(rb.velocity.y < -10f)
+        if (isGrounded)
         {
-            Debug.Log("Falling");
+            animator.SetBool("isJumping", false);
+        }
+        if (rb.velocity.y < -3f)
+        {
             animator.SetBool("isFalling", true);
         }
-        else
+        if(rb.velocity.y > 0)
+        {
+            animator.SetBool("isJumping", true);
+        }
+        if(rb.velocity.y == 0)
         {
             animator.SetBool("isFalling", false);
         }
