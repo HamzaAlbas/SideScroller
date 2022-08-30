@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class ZombieController : MonoBehaviour
 {
     private NavMeshAgent agent = null;
+    private Animator animator;
     [SerializeField] private Transform target;
 
     private void Start()
@@ -21,10 +22,18 @@ public class ZombieController : MonoBehaviour
     private void MoveToTarget()
     {
         agent.SetDestination(target.position);
+        animator.SetFloat("MoveSpeed", 1f, 0.3f, Time.deltaTime);
+
+        var distance = Vector3.Distance(target.position, transform.position);
+        if (distance <= agent.stoppingDistance)
+        {
+            animator.SetFloat("MoveSpeed", 0f);
+        }
     }
 
     private void GetReferences()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
 }
