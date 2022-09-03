@@ -18,20 +18,14 @@ public class HealthbarController : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
-    {
-        SetHealth();
-    }
-
     void LateUpdate()
     {
         transform.position = Vector3.MoveTowards(transform.position, following.transform.position + offset, interested);
-        slider.value = stats.health / 100;
     }
 
-    private void SetHealth()
+    public void SetHealthBar(float health, float maxHealth)
     {
-        slider.maxValue = stats.maxHealth;
-        slider.value = stats.maxHealth;
+        slider.maxValue = maxHealth;
+        slider.value = health;
     }
 }

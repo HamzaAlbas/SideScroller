@@ -4,56 +4,71 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public int health;
-    public int maxHealth;
+    [SerializeField] protected float health;
+    [SerializeField] protected float maxHealth;
 
     [SerializeField] protected bool isDead;
 
     private void Start()
     {
         InitVariables();
+        HealthbarController.Instance.SetHealthBar(health, maxHealth);
+    }
+
+    private void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            TakeDamage(10);
+        }
     }
 
     public void CheckHealth()
     {
-        if(health <= 0)
+        if (health <= 0)
         {
             health = 0;
+            HealthbarController.Instance.SetHealthBar(health, maxHealth);
+
             Die();
         }
-        if(health <= maxHealth)
+        if (health >= maxHealth)
         {
             health = maxHealth;
+            HealthbarController.Instance.SetHealthBar(health, maxHealth);
+
         }
+    }
+
+    public void SetHealth(float newHealth)
+    {
+        health = newHealth;
+        HealthbarController.Instance.SetHealthBar(health, maxHealth);
+        CheckHealth();
     }
 
     public void Die()
     {
         isDead = true;
-    }
-
-    public void SetHealth(int newHealth)
-    {
-        health = newHealth;
-        CheckHealth();
+        Debug.Log("Dead");
     }
 
     public void TakeDamage(int damage)
     {
-        int healthAfterDamage = health - damage;
-        SetHealth(healthAfterDamage);
+        float newHealth = health - damage;
+        SetHealth(newHealth);
+        CheckHealth();
     }
 
     public void Heal(int heal)
     {
-        int healthAfterHeal = health + heal;
-        SetHealth(healthAfterHeal);
+        float newHealth = health + heal;
+        SetHealth(newHealth);
+        CheckHealth();
     }
 
     public void InitVariables()
     {
-        maxHealth = 100;
         SetHealth(maxHealth);
-        isDead = false;
     }
 }
