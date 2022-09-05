@@ -9,6 +9,8 @@ public class PlayerStats : MonoBehaviour
 
     [SerializeField] protected bool isDead;
 
+    [SerializeField] private Animator animator;
+
     private void Start()
     {
         InitVariables();
@@ -50,6 +52,7 @@ public class PlayerStats : MonoBehaviour
     public void Die()
     {
         isDead = true;
+        animator.SetTrigger("PlayerDead");
         Debug.Log("Dead");
     }
 
