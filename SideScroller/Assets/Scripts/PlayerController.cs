@@ -157,6 +157,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("ZombieHand"))
         {
             animator.SetTrigger("PlayerHit");
+            PlayerStats.Instance.TakeDamage(ZombieController.Instance.zombieDamage);
         }
     }
     private void Fire()

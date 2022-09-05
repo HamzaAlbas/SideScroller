@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class ZombieController : MonoBehaviour
 {
     public static ZombieController Instance { get; set; }
+    public int zombieDamage;
+
     [HideInInspector] public NavMeshAgent agent = null;
     private Animator animator;
     [SerializeField] private Transform target;
