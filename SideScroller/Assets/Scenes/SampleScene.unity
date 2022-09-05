@@ -4334,6 +4334,7 @@ MonoBehaviour:
   recoilMaxRotation: 45
   rightForeArm: {fileID: 4969631161438136}
   rightHand: {fileID: 4512952866728212}
+  animator: {fileID: 0}
 --- !u!114 &95612695768826226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4349,6 +4350,7 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   isDead: 0
+  animator: {fileID: 95612695768826222}
 --- !u!65 &95612695768826227
 BoxCollider:
   m_ObjectHideFlags: 0

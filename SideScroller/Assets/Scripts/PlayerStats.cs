@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    public static PlayerStats Instance { get; set; }
     [SerializeField] protected float health;
     [SerializeField] protected float maxHealth;
 
-    [SerializeField] protected bool isDead;
+    public bool isDead;
 
     [SerializeField] private Animator animator;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -52,7 +58,7 @@ public class PlayerStats : MonoBehaviour
     public void Die()
     {
         isDead = true;
-        animator.SetTrigger("PlayerDead");
+        animator.SetTrigger("PlayerDead");        
         Debug.Log("Dead");
     }
 

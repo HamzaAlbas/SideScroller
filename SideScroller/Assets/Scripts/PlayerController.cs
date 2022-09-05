@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance { get; set; }
+
     [SerializeField] private float playerSpeed = 2.5f;
     [SerializeField] private float jumpHeight = 5f;
     [SerializeField] private Transform groundCheck;
@@ -18,7 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float recoilMaxRotation = 45f;
     [SerializeField] private Transform rightForeArm, rightHand;
 
-
+    
     private Rigidbody rb;
     private Animator animator;
     private bool isGrounded;
@@ -35,7 +37,10 @@ public class PlayerController : MonoBehaviour
             return dir > 0f ? -1 : dir < 0f ? 1 : 0;
         }
     }
-
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start()
     {
         GetReferences();
@@ -43,90 +48,107 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        h = Input.GetAxis("Horizontal");
-
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if(Physics.Raycast(ray, out hit, Mathf.Infinity, mouseAimMask))
+        if (PlayerStats.Instance.isDead == false)
         {
-            target.position = hit.point;
-        }
+            h = Input.GetAxis("Horizontal");
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
-        {
-            rb.velocity = new Vector3(rb.velocity.x, 0, 0);
-            rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -1 * Physics.gravity.y), ForceMode.VelocityChange);
-            animator.SetBool("isJumping", true);
-        }
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Fire();
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, mouseAimMask))
+            {
+                target.position = hit.point;
+            }
+
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, 0, 0);
+                rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -1 * Physics.gravity.y), ForceMode.VelocityChange);
+                animator.SetBool("isJumping", true);
+            }
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Fire();
+            }
         }
     }
 
     private void LateUpdate()
     {
-        if(recoilTimer < 0)
+        if (PlayerStats.Instance.isDead == false)
         {
-            return;
-        }
+            if (recoilTimer < 0)
+            {
+                return;
+            }
 
-        float curveTime = (Time.time - recoilTimer) / recoilDuration;
-        if (curveTime > 1f)
-        {
-            recoilTimer = -1;
-        }
-        else
-        {
-            rightForeArm.Rotate(Vector3.forward, recoilCurve.Evaluate(curveTime) * recoilMaxRotation, Space.Self);
+            float curveTime = (Time.time - recoilTimer) / recoilDuration;
+            if (curveTime > 1f)
+            {
+                recoilTimer = -1;
+            }
+            else
+            {
+                rightForeArm.Rotate(Vector3.forward, recoilCurve.Evaluate(curveTime) * recoilMaxRotation, Space.Self);
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector3(h * playerSpeed, rb.velocity.y, 0); //Movement
-        animator.SetFloat("speed", (FacingSign * rb.velocity.x) / playerSpeed);
+        if(PlayerStats.Instance.isDead == false)
+        {
+            rb.velocity = new Vector3(h * playerSpeed, rb.velocity.y, 0); //Movement
+            animator.SetFloat("speed", (FacingSign * rb.velocity.x) / playerSpeed);
 
-        if(isGrounded && ((FacingSign * rb.velocity.x) / playerSpeed) != 0)
-        {
-            animator.SetBool("isMoving", true);
-        }
-        else
-        {
-            animator.SetBool("isMoving", false);
-        }
+            if (isGrounded && ((FacingSign * rb.velocity.x) / playerSpeed) != 0)
+            {
+                animator.SetBool("isMoving", true);
+            }
+            else
+            {
+                animator.SetBool("isMoving", false);
+            }
 
-        rb.MoveRotation(Quaternion.Euler(new Vector3(0, 90 * Mathf.Sign(target.position.x - transform.position.x), 0))); //Face where you aim
+            rb.MoveRotation(Quaternion.Euler(new Vector3(0, 90 * Mathf.Sign(target.position.x - transform.position.x), 0))); //Face where you aim
 
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundMask, QueryTriggerInteraction.Ignore);//Check if grounded
-        animator.SetBool("isGrounded", isGrounded);
-        if (isGrounded)
-        {
-            animator.SetBool("isJumping", false);
-        }
-        if (rb.velocity.y < -3f)
-        {
-            animator.SetBool("isFalling", true);
-        }
-        if(rb.velocity.y > 0)
-        {
-            animator.SetBool("isJumping", true);
-        }
-        if(rb.velocity.y == 0)
-        {
-            animator.SetBool("isFalling", false);
+            isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundMask, QueryTriggerInteraction.Ignore);//Check if grounded
+            animator.SetBool("isGrounded", isGrounded);
+            if (isGrounded)
+            {
+                animator.SetBool("isJumping", false);
+            }
+            if (rb.velocity.y < -3f)
+            {
+                animator.SetBool("isFalling", true);
+            }
+            if (rb.velocity.y > 0)
+            {
+                animator.SetBool("isJumping", true);
+            }
+            if (rb.velocity.y == 0)
+            {
+                animator.SetBool("isFalling", false);
+            }
         }
     }
 
     private void OnAnimatorIK()
     {
-        animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
-        animator.SetIKPosition(AvatarIKGoal.RightHand, target.position);
+        if (PlayerStats.Instance.isDead == false)
+        {
+            animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
+            animator.SetIKPosition(AvatarIKGoal.RightHand, target.position);
 
-        animator.SetLookAtWeight(1);
-        animator.SetLookAtPosition(target.position);
+            animator.SetLookAtWeight(1);
+            animator.SetLookAtPosition(target.position);
+        }
+        else
+        {
+            animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 0);
+            animator.SetLookAtWeight(0);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
