@@ -4197,6 +4197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b73c85244f5a544b73286d338223c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 0}
   target: {fileID: 4889916728918970}
 --- !u!114 &95394819484211746
 MonoBehaviour:
@@ -4213,6 +4214,7 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   isDead: 0
+  animator: {fileID: 95394819484211741}
 --- !u!95 &95612695768826222
 Animator:
   serializedVersion: 4
@@ -4334,7 +4336,6 @@ MonoBehaviour:
   recoilMaxRotation: 45
   rightForeArm: {fileID: 4969631161438136}
   rightHand: {fileID: 4512952866728212}
-  animator: {fileID: 0}
 --- !u!114 &95612695768826226
 MonoBehaviour:
   m_ObjectHideFlags: 0
