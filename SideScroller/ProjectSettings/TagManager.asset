@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - ZombieHand
+  - Zombie
   layers:
   - Default
   - TransparentFX

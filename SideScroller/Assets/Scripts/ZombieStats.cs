@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class ZombieStats : MonoBehaviour
 {
+    public static ZombieStats Instance { get; set; }
     [SerializeField] protected float health;
     [SerializeField] protected float maxHealth;
     [SerializeField] protected bool isDead;
     [SerializeField] private Animator animator;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {

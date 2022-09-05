@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; set; }
+    public int weaponDamage = 10;
 
     [SerializeField] private float playerSpeed = 2.5f;
     [SerializeField] private float jumpHeight = 5f;

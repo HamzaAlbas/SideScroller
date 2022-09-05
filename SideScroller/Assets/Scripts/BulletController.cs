@@ -46,10 +46,19 @@ public class BulletController : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Zombie"))
+        {
+            ZombieStats.Instance.TakeDamage(PlayerController.Instance.weaponDamage);
+            Destroy(gameObject);
+        }
+    }
+
+
     private void Hit(Vector3 position, Vector3 direction, Vector3 reflected, Collider collider)
     {
         //When object hits a collider
-
         Destroy(gameObject);
     }
 
