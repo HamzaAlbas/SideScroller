@@ -7,6 +7,7 @@ public class ZombieStats : MonoBehaviour
     [SerializeField] protected float health;
     [SerializeField] protected float maxHealth;
     [SerializeField] protected bool isDead;
+    [SerializeField] private Animator animator;
 
     private void Start()
     {
@@ -50,6 +51,8 @@ public class ZombieStats : MonoBehaviour
     {
         isDead = true;
         Debug.Log("Dead");
+        animator.SetTrigger("ZombieDead");
+        ZombieController.Instance.agent.speed = 0;
     }
 
     public void TakeDamage(int damage)

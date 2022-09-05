@@ -5,9 +5,15 @@ using UnityEngine.AI;
 
 public class ZombieController : MonoBehaviour
 {
-    private NavMeshAgent agent = null;
+    public static ZombieController Instance { get; set; }
+    [HideInInspector] public NavMeshAgent agent = null;
     private Animator animator;
     [SerializeField] private Transform target;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
