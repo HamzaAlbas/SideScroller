@@ -128,6 +128,14 @@ public class PlayerController : MonoBehaviour
         animator.SetLookAtWeight(1);
         animator.SetLookAtPosition(target.position);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("ZombieHand"))
+        {
+            animator.SetTrigger("PlayerHit");
+        }
+    }
     private void Fire()
     {
         recoilTimer = Time.time;
